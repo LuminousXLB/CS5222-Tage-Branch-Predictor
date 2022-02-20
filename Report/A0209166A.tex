@@ -1,0 +1,117 @@
+\documentclass[screen,nonacm,sigconf]{acmart}
+
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,arrows}
+
+\usepackage{minted}
+\setminted{
+    autogobble=true,
+    breaklines=true,
+    fontsize=\small,
+    xleftmargin=2em
+}
+
+
+\begin{document}
+
+\title{
+  TAGE Branch Predictor on Sniper Simulator
+}
+\subtitle{
+  CS5222 -- Project 1
+}
+
+\author{Shen Jiamin}
+\affiliation{%
+  \country{A0209166A}
+}
+\email{shen_jiamin@u.nus.edu}
+
+\maketitle
+
+\cite{Seznec06jilp}
+
+Implementing the branch predictor in Sniper will allow us to learn the details of a novel
+branch predictor. What I feel is important for this project is the quality of the comparison
+against existing branch predictors, as well as whether the benchmarks meet the expected
+performance from the reviewed paper. In addition, describing the key features of the
+branch predictor chosen is an important part of this project. Why did you choose this
+predictor? Below are some examples of some questions that I’d like to see answers to in
+your report (adding more background / description / results are a plus and will help your
+grade).
+\begin{enumerate}
+  \item Why did you choose this branch predictor? What are interesting components of this
+        branch predictor? What was novel about this predictor when it was published?
+        While a critical review is not necessary for this report, an in-depth overview is
+        needed.
+  \item What branch predictors were this one compared to in the original paper? Did your
+        implementation perform as expected? How did you debug your implementation?
+  \item Please compare this branch predictor against the two other branch predictors in
+        Sniper, and plot as an MPKI miss chart (misses per 1K instructions) for each of the 5
+        benchmarks and 3 branch predictors.
+  \item Bonus, implement the branch predictor that was compared to in the paper (the one
+        that was beaten) so that we can compare performance numbers against the original
+        (20\% bonus).
+\end{enumerate}
+
+
+
+
+In the paper ``A case for (partially) TAgged GEometric history length branch
+prediction'' \cite{Seznec06jilp} by Andr{\'e} Seznec (2006),
+the author presented his design of a new branch predictor named TAGE predictor.
+% Background
+The paper was produced in the background that
+(1) exploiting several different history lengths is acknowledged, and
+(2) hybrid predictors combining the prediction result from multiple meta predictors have been developed as well as prediction combination functions such as majority vote, predictor fusion and partial tagging and the adder tree seems to outstanding among them.
+
+% Contribution
+The TAGE predictor users a geometric series as the list of history length,
+which is the main characteristic of O-GEHL\cite{Seznec05isca},
+while it derives the main structure from PPM-like predictor\cite{Michaud05jilp}.
+%
+The significant difference of TAGE from O-GEHL is the use of partial tags instead of adder tree, which the author believes provides better accuracy and storage efficiency and enables the adaptation of the design for conditional branch prediction to the indirection target branch prediction.
+Compared with the PPM-like predictor, TAGE proposed a new predictor update algorithm that minimizes the perturbation induced by a single occurrence of a branch.
+%
+Based on the structure of TAGE, the author also proposed an indirect branch target predictor ITTAGE and a unified predictor COTTAGE, which supports both conditional branch and indirect branch target prediction.
+
+% Evaluation
+The author evaluated the accuracy of the TAGE predictor with the parameters listed in Table 2 in the paper.
+He compared the MPKI (mispredictions per kilo instructions) of TAGE, O-GEHL and PPM-like predictors with different prediction tables sizes.
+The result shows that the TAGE predictor outperforms O-GEHL and PPM-like in all tested conditions, indicating the correctness of the author's proposal.
+He also evaluated the accuracy regarding the variation of history length, which shows that with the maximum history length growing, the accuracy is better at first but no improvement when the length is too long.
+The evaluation plot for the impact of the tag width is not as clear as the ones ahead.
+The variation of interest is the tag width, but the plot's x-axis varies the prediction tables size, which makes it difficult to compare between different tag widths.
+The result shows that increasing the tag width over a threshold provides little return for accuracy improvement.
+Besides the explicit evaluations discussed above, the experiment results show that the mispredictions decrease with larger prediction tables but diminishing returns for accuracy.
+
+% Assumption
+
+% Conclusion
+The work is auspicious in that many variations of TAGE predictor are proposed after it and lead nearly all the Championship Branch Prediction afterwards, for example, L-TAGE\cite{Seznec07jilp} in 2007, ISL-TAGE\cite{Seznec11hal} in 2011 and TAGE-SC-L\cite{Seznec14hal,Seznec16hal} in 2014 and 2016.
+
+% Limitation
+However, these following works also indicate the limitations of the TAGE predictor.
+In \cite{Seznec07jilp}, the author found that using the alternate prediction, instead of the prediction using the longest history, for newly allocated entries is more efficient in some applications.
+He also identified that TAGE fails to predict when the control flow path inside the loop body is irregular and augmented TAGE with loop predictor.
+In \cite{Seznec11hal}, it is identified that TAGE sometimes fails to predict branches that are not strongly biased but that are only statistically biased and thus the Statistical Corrector Predictor is introduced.
+He also identified that the number of access to the predictor can be reduced and had an Immediate Update Mimicker as an add-on.
+
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{base}
+
+\newpage
+
+\appendix
+
+\end{document}
+\endinput

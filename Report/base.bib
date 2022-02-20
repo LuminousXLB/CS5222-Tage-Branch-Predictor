@@ -1,0 +1,105 @@
+@inproceedings{Seznec05isca,
+  address   = {Madison, WI, USA},
+  author    = {Andr{\'{e}} Seznec},
+  booktitle = {32nd International Symposium on Computer Architecture (ISCA'05)},
+  doi       = {10.1109/ISCA.2005.13},
+  pages     = {394--405},
+  publisher = {{IEEE} Computer Society},
+  title     = {Analysis of the O-GEometric History Length Branch Predictor},
+  year      = {2005}
+}
+
+@article{Michaud05jilp,
+  author   = {Pierre Michaud},
+  journal  = {The Journal of Instruction-Level Parallelism},
+  numpages = {10},
+  pdf      = {https://jilp.org/vol7/v7paper10.pdf},
+  title    = {A PPM-like, Tag-based Predictor},
+  url      = {https://jilp.org/vol7/},
+  volume   = {7},
+  year     = {2005}
+}
+
+@article{Seznec06jilp,
+  author   = {Seznec, Andr{\'e} and Michaud, Pierre},
+  journal  = {The Journal of Instruction-Level Parallelism},
+  numpages = {23},
+  pdf      = {https://jilp.org/vol8/v8paper1.pdf},
+  title    = {A case for (partially) TAgged GEometric history length branch prediction},
+  url      = {https://jilp.org/vol8/},
+  volume   = {8},
+  year     = {2006}
+}
+
+@article{Seznec07jilp,
+  author   = {Andr{\'{e}} Seznec},
+  journal  = {The Journal of Instruction-Level Parallelism},
+  numpages = {13},
+  pdf      = {https://jilp.org/vol9/v9paper6.pdf},
+  title    = {The {L-TAGE} Branch Predictor},
+  url      = {https://jilp.org/vol9/index.html},
+  volume   = {9},
+  year     = {2007}
+}
+
+
+@inproceedings{Seznec11hal,
+  address      = {San Jose, United States},
+  author       = {Seznec, Andr{\'e}},
+  booktitle    = {{JWAC-2: Championship Branch Prediction}},
+  hal_id       = {hal-00639040},
+  hal_version  = {v1},
+  month        = Jun,
+  numpages     = {4},
+  organization = {{JILP}},
+  pdf          = {https://hal.inria.fr/hal-00639040/file/ISL-TAGE-Final.pdf},
+  title        = {{A 64 Kbytes ISL-TAGE branch predictor}},
+  url          = {https://hal.inria.fr/hal-00639040},
+  year         = {2011}
+}
+
+
+@inproceedings{Seznec14hal,
+  address     = {Minneapolis, United States},
+  author      = {Seznec, Andr{\'e}},
+  booktitle   = {{JILP - Championship Branch Prediction}},
+  hal_id      = {hal-01086920},
+  hal_version = {v1},
+  month       = Jun,
+  numpages    = {8},
+  pdf         = {https://hal.inria.fr/hal-01086920/file/CBP4-TAGE-SC-L.pdf},
+  title       = {{TAGE-SC-L Branch Predictors}},
+  url         = {https://hal.inria.fr/hal-01086920},
+  year        = {2014}
+}
+
+@inproceedings{Seznec16hal,
+  address     = {Seoul, South Korea},
+  author      = {Seznec, Andr{\'e}},
+  booktitle   = {{5th JILP Workshop on Computer Architecture Competitions (JWAC-5):  Championship Branch Prediction (CBP-5)}},
+  hal_id      = {hal-01354253},
+  hal_version = {v1},
+  month       = Jun,
+  numpages    = {4},
+  pdf         = {https://hal.inria.fr/hal-01354253/file/CBP2016-TAGE-SC-L%20.pdf},
+  title       = {{TAGE-SC-L Branch Predictors Again}},
+  url         = {https://hal.inria.fr/hal-01354253},
+  year        = {2016}
+}
+
+@inproceedings{Seznec11micro,
+  abstract  = {The TAGE predictor is often considered as state-of-the-art in conditional branch predictors proposed by academy. In this paper, we first present directions to reduce the hardware implementation cost of TAGE. Second we show how to further reduce the misprediction rate of TAGE through augmenting it with small side predictors.On a hardware implementation of a conditional branch predictor, the predictor tables are updated at retire time. A retired branch normally induces three accesses to the branch predictor tables: read at prediction time, read at retire time and write for the update. We show that in practice, the TAGE predictor accuracy would not be significantly impaired by avoiding a systematic second read of the prediction tables at retire time for correct prediction. Combined with the elimination of silent updates, this significantly reduces the number of accesses to the predictor. Furthermore, we present a technique allowing to implement the TAGE predictor tables as bank-interleaved structures using single-port memory components. This significantly reduces the silicon footprint of the predictor as well as its energy consumption without significantly impairing its accuracy.In the last few years, progress in branch prediction accuracy has relied on associating a main state-of-the-art single scheme branch predictor with specialized side predictors. As a second contribution of the paper, we develop this side predictor approach for TAGE. At the recent 3rd Championship Branch Prediction, it was shown that the TAGE predictor can be augmented with several side predictors, each one addressing a category of predictions that is not optimally addressed by TAGE. The Immediate Update Mimicker tracks the inflight already executed but not retired branches and use their result for correcting the predictions. Sometimes TAGE fails to predict when the control flow path inside the loop body is irregular. TAGE can be augmented with a loop predictor to predict loops with constant iteration numbers, TAGE also sometimes fails to predict branches that are not strongly biased but that are only statistically biased. The Statistical Corrector Predictor is introduced to track these statistically correlated branches. These side predictors allow to increase the prediction accuracy of TAGE. Building on top of these proposals, we further show that the Statistical Corrector Predictor can be used to leverage local history to further improve the potential of the TAGE predictor. Furthermore, we show that the use of a Statistical Corrector predictor based on local history, LSC, dwarfs the benefits of the loop predictor and the global history Statistical Corrector.Finally, we present a cost-effective implementation of the TAGE-LSC predictor using single-port memory components and a reduced number of accesses per prediction.},
+  address   = {New York, NY, USA},
+  author    = {Seznec, Andr\'{e}},
+  booktitle = {Proceedings of the 44th Annual IEEE/ACM International Symposium on Microarchitecture},
+  doi       = {10.1145/2155620.2155635},
+  isbn      = {9781450310536},
+  location  = {Porto Alegre, Brazil},
+  numpages  = {11},
+  pages     = {117--127},
+  publisher = {Association for Computing Machinery},
+  series    = {MICRO-44},
+  title     = {A New Case for the TAGE Branch Predictor},
+  url       = {https://doi.org/10.1145/2155620.2155635},
+  year      = {2011}
+}
